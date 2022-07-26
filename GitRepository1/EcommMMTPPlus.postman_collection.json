@@ -1,0 +1,211 @@
+{
+	"info": {
+		"_postman_id": "65429bfd-5578-4d17-a81b-c520e9225451",
+		"name": "EcommMMTPPlus",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateLeadInfo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" var response=pm.response.json()\r",
+							"pm.globals.set(\"Token\",response.TokenData.access_token);\r",
+							"pm.globals.set(\"LeadId\",response.LeadId);\r",
+							"/*pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//pm.test(\"varify firstnm\", function () {\r",
+							"  //  var jsondata=pm.response.json()\r",
+							"    //pm.expect(jsondata.FullName.FirstName).to.eql(\"first\");\r",
+							"//});\r",
+							"pm.test(\"varify Mobile Number\", function () {\r",
+							"    var jsondata=pm.response.json()\r",
+							"    var mobnum=pm.globals.get(\"MobNo\");\r",
+							"    pm.expect(jsondata.MobileNumber).to.eql(parseInt(mobnum));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"varify Salutation\", function () {\r",
+							"    var jsondata=pm.response.json()\r",
+							"    var sal=pm.globals.get(\"Salutation\");\r",
+							"    console.log(sal)\r",
+							"   if(sal==\"Mr\")\r",
+							"   {\r",
+							"       pm.expect(jsondata.Salutation).to.eql(parseInt(\"3\"));\r",
+							"   }\r",
+							"   else if(sal=\"Mrs\")\r",
+							"   {\r",
+							"      pm.expect(jsondata.Salutation).to.eql(parseInt(\"9\")); \r",
+							"   }\r",
+							"   else if(sal==\"Dr\")\r",
+							"   {pm.expect(jsondata.Salutation).to.eql(parseInt(\"10\"));\r",
+							"   }\r",
+							"   else if(sal=\"Ms\")\r",
+							"   {\r",
+							"      pm.expect(jsondata.Salutation).to.eql(parseInt(\"1\")); \r",
+							"   }\r",
+							"   else if(sal=\"Others\")\r",
+							"   {\r",
+							"      pm.expect(jsondata.Salutation).to.eql(parseInt(\"12\")); \r",
+							"   }\r",
+							"});\r",
+							"*/\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"/*pm.globals.set(\"MobNo\",\"7057203606\")\r",
+							"pm.globals.set(\"Salutation\",\"Mrs\")*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"Gender\":1,\"ResponseStatus\":{},\"FullName\":{\"FirstName\":\"first\",\"LastName\":\"last\",\"MiddleName\":\"\"},\"UTMSource\":\"Direct\",\"UTMCampaign\":\"Direct\",\"CityId\":280,\"StateId\":14,\"CityName\":\"Pune\",\"StateName\":\"Maharashtra\",\"DOB\":\"1998-12-12\",\"IsSmoker\":false,\"AnnualIncome\":\"500000\",\"Pincode\":\"411011\",\"SalutationDesc\":\"3\",\"Salutation\":3,\"EmailAddress\":\"darshana.gaikwad@zensoftservices.com\",\"MobileNumber\":7057203606,\"DMSCode\":\"\",\"ProductPlanId\":5,\"PlanOption\":1,\"Agree\":true,\"IsExistingEmployee\":false,\"ExistingEmployeeId\":\"\",\"AgentName\":\"\",\"OTP\":\"558351\",\"EducationId\":\"3\",\"OccupationId\":\"36\",\"ApplicationNumber\":\"\",\"PaymentTermType\":2,\"IsChildBelow15\":false}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://uat-online.pnbmetlife.com/APIs/PlatformAPI/PreQuote/CreateLeadInfo",
+					"protocol": "https",
+					"host": [
+						"uat-online",
+						"pnbmetlife",
+						"com"
+					],
+					"path": [
+						"APIs",
+						"PlatformAPI",
+						"PreQuote",
+						"CreateLeadInfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SaveQuoteDetails",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"ResponseStatus\":{},\"IsTelePricing\":false,\"QuoteId\":0,\"LeadId\":209253,\"PremiumServiceTax\":18,\"EnteredProtectionCover\":0,\"ProtectionCover\":\"9000000\",\"MaturityValue\":0,\"Premium\":3900.78,\"ExTaxpremium\":3305.745,\"PaymentFrequency\":4,\"AnnualPremiumAmount\":12690,\"PolicyTerm\":36,\"PaymentTermType\":8,\"PremiumPayingTerm\":15,\"PolicyFee\":0}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://uat-online.pnbmetlife.com/APIs/PlatformAPI/PreQuote/SaveQuoteDetails",
+					"protocol": "https",
+					"host": [
+						"uat-online",
+						"pnbmetlife",
+						"com"
+					],
+					"path": [
+						"APIs",
+						"PlatformAPI",
+						"PreQuote",
+						"SaveQuoteDetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SaveSpouseDetails",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"SpouseDOB\":\"1994-12-12T00:00:00.000Z\",\"OccupationId\":\"35\",\"EducationId\":\"1\",\"AnnualIncome\":1100000,\"SpouseCoverSA\":9000000,\"SpouseCoverPT\":36,\"IsSmoker\":false,\"LeadId\":209253,\"Salutation\":0,\"FirstName\":\"\",\"LastName\":\"\",\"Nationality\":0,\"CountryId\":0,\"OccupationName\":\"\",\"OrganizationName\":\"\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://uat-online.pnbmetlife.com/APIs/PlatformAPI/PersonalInfo/SaveSpouseDetails",
+					"protocol": "https",
+					"host": [
+						"uat-online",
+						"pnbmetlife",
+						"com"
+					],
+					"path": [
+						"APIs",
+						"PlatformAPI",
+						"PersonalInfo",
+						"SaveSpouseDetails"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPremiumDetails",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://uat-online.pnbmetlife.com/APIsWithCrosOrigin/PricingAPI/Pricing/GetPremiumDetails",
+					"protocol": "https",
+					"host": [
+						"uat-online",
+						"pnbmetlife",
+						"com"
+					],
+					"path": [
+						"APIsWithCrosOrigin",
+						"PricingAPI",
+						"Pricing",
+						"GetPremiumDetails"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

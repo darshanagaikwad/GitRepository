@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "e700c04f-2907-4f24-8a98-71470131b6c6",
+		"name": "Exercise3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Weather",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"WhetherId\", 721);\r",
+							"pm.environment.set(\"temp\",\"296.2\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//validate status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//validate response time\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"var jsondt=pm.response.json();\r",
+							"\r",
+							"//Validate Response body text\r",
+							"pm.test(\"Validate Response body text\",function()\r",
+							"{\r",
+							"    responseBody.has(\"wind\");\r",
+							"    pm.expect(jsondt.name).to.eql(\"Delhi\")\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"//Validate WhetherId in response body\r",
+							"pm.test(\"Validate WhetherId \", function () {\r",
+							"\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.weather[0].id).to.eql(pm.globals.get(\"WhetherId\"));\r",
+							"\r",
+							"});\r",
+							"\r",
+							"////Validate temp in response body\r",
+							"pm.test(\"Validate temp\", function () {\r",
+							"\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.main.temp).to.eql(parseFloat(pm.environment.get(\"temp\")));\r",
+							"\r",
+							"});\r",
+							"\r",
+							"//validate response header data\r",
+							"pm.test(\"Validate header data\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\",\"application/json; charset=utf-8\");\r",
+							"    pm.response.to.be.header(\"Content-Length\",\"457\");\r",
+							"    pm.response.to.be.header(\"Connection\",\"keep-alive\");\r",
+							"    pm.response.to.be.header(\"Access-Control-Allow-Methods\",\"GET, POST\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "appid",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "c76e6d1f2e6af75573c66176b1ad5627",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.openweathermap.org/data/2.5/weather?q=Delhi",
+					"protocol": "http",
+					"host": [
+						"api",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Delhi"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

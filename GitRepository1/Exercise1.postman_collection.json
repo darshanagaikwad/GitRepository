@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "fe939c0e-412c-4b5a-847c-92b0ba3a4221",
+		"name": "Exercise1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetCountry",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsondt=pm.response.json();\r",
+							"pm.collectionVariables.set(\"name\",jsondt[0].name);\r",
+							"var nm =pm.collectionVariables.get(\"name\");\r",
+							"console.log(nm);\r",
+							"\r",
+							"pm.globals.set(\"Gname\", jsondt[1].name);\r",
+							"var nm1 =pm.globals.get(\"Gname\");\r",
+							"console.log(nm1);\r",
+							"\r",
+							"pm.environment.set(\"Ename\", jsondt[2].name);\r",
+							"var nm2 =pm.environment.get(\"Ename\");\r",
+							"console.log(nm2);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 1500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1500);\r",
+							"});\r",
+							"pm.test(\"Validate country name\", function () {\r",
+							"    pm.expect(jsondt[2].country).to.eql(\"India\");\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate header type\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.be.header(\"Content-Type\",\"application/json\");\r",
+							"    pm.response.to.be.header(\"Server\",\"nginx/1.14.0\");\r",
+							"    pm.response.to.be.header(\"Connection\",\"keep-alive\");\r",
+							"    pm.response.to.be.header(\"Content-Length\",\"77056\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://universities.hipolabs.com/search?country=India",
+					"protocol": "http",
+					"host": [
+						"universities",
+						"hipolabs",
+						"com"
+					],
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "India"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "name",
+			"value": ""
+		}
+	]
+}
